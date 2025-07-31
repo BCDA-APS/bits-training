@@ -56,8 +56,11 @@ gh repo create my_beamline_bits --template BCDA-APS/BITS-Starter --public
 
 ```bash
 # Navigate to your workspace
-mkdir -p ~/workspace
-cd ~/workspace
+mkdir -p ~/ws
+cd ~/ws
+
+# Clone the training repository
+git clone https://github.com/BCDA-APS/bits-training.git
 
 # Clone your repository (replace YOUR_USERNAME with your GitHub username)
 git clone https://github.com/YOUR_USERNAME/my_beamline_bits.git
