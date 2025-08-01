@@ -1,6 +1,5 @@
 # bits-training
 A repository teaching you how to use and implement the BITS framework
-# BITS Demo Tutorial
 
 ## Complete Tutorial: From IOCs to Production BITS Deployment
 
