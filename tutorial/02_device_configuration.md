@@ -335,68 +335,7 @@ apstools.devices.ad_creator:
 
 ## Device Testing and Validation
 
-### 1. Create Device Test Script
-
-Create `scripts/test_devices.py`:
-
-```python
-#!/usr/bin/env python3
-"""Test device connectivity and functionality"""
-
-def test_all_devices():
-    """Test all configured devices"""
-    from my_beamline.startup import *
-    import bluesky.preprocessors as bpp
-
-    print("🔧 Device Connectivity Test")
-    print("=" * 40)
-
-    # Test motors
-    motors = list(bpp._devices_by_label.get('motors', []))
-    print(f"\n🚗 Motors ({len(motors)}):")
-    for motor in motors:
-        try:
-            pos = motor.position
-            limits = motor.limits
-            print(f"  ✅ {motor.name}: pos={pos:.3f}, limits={limits}")
-        except Exception as e:
-            print(f"  ❌ {motor.name}: {e}")
-
-    # Test detectors
-    detectors = list(bpp._devices_by_label.get('detectors', []))
-    print(f"\n🔍 Detectors ({len(detectors)}):")
-    for det in detectors:
-        try:
-            connected = det.connected
-            print(f"  {'✅' if connected else '❌'} {det.name}: connected={connected}")
-        except Exception as e:
-            print(f"  ❌ {det.name}: {e}")
-
-    # Test baseline devices
-    baseline = list(bpp._devices_by_label.get('baseline', []))
-    print(f"\n📊 Baseline ({len(baseline)}):")
-    for dev in baseline:
-        try:
-            value = dev.get()
-            print(f"  ✅ {dev.name}: {value}")
-        except Exception as e:
-            print(f"  ❌ {dev.name}: {e}")
-
-if __name__ == "__main__":
-    test_all_devices()
-```
-
-### 2. Run Device Tests
-
-```bash
-# Make script executable
-chmod +x scripts/test_devices.py
-
-# Run device tests
-python scripts/test_devices.py
-```
-
-### 3. Test with List Devices Magic
+### Test with List Devices Magic
 
 ```python
 # In IPython session with your instrument loaded
@@ -406,7 +345,15 @@ python scripts/test_devices.py
 %wa motors      # Only motors
 %wa detectors   # Only detectors
 %wa baseline    # Only baseline devices
+listobjects()    # Shows all devices
 ```
+
+### Try to observe device attributes
+```python
+scan_motor.connected
+scan_motor.component_names
+```
+Try writing the device name and pressing tab in your ipython terminal to see what else you can find out about your devices
 
 ## Troubleshooting Common Issues
 
