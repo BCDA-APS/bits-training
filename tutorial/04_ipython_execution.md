@@ -563,6 +563,8 @@ RE.md['scan_id']     # Current scan ID
 
 ## Interactive Device Testing
 
+Open your IPython terminal and try the following
+
 ### 1. Motor Testing
 
 ```python
@@ -679,6 +681,90 @@ RE(sample_alignment([sample_x, sample_y], scaler1, step_size=0.1))
 
 # Detector optimization
 RE(detector_optimization(m1, scaler1, initial_range=2.0))
+```
+
+## Modifying your instrument
+### Your iconfig file
+
+Go inside your iconfig.yaml file, located in the configs folder of your instrument. Play around with the values and see what happens
+```yaml
+# Configuration for the Bluesky instrument package.
+
+# identify the version of this iconfig.yml file
+ICONFIG_VERSION: 2.0.1
+
+# Add additional configuration for use with your instrument.
+
+### The short name for the databroker catalog.
+DATABROKER_CATALOG: &databroker_catalog temp
+
+### RunEngine configuration
+RUN_ENGINE:
+    DEFAULT_METADATA:
+        beamline_id: demo_instrument
+        instrument_name: Most Glorious Scientific Instrument
+        proposal_id: commissioning
+        databroker_catalog: *databroker_catalog
+
+    ### EPICS PV to use for the `scan_id`.
+    ### Default: `RE.md["scan_id"]` (not using an EPICS PV)
+    # SCAN_ID_PV: "IOC:bluesky_scan_id"
+
+    ### Where to "autosave" the RE.md dictionary.
+    ### Defaults:
+    MD_PATH: .re_md_dict.yml
+
+    ### The progress bar is nice to see,
+    ### except when it clutters the output in Jupyter notebooks.
+    ### Default: False
+    USE_PROGRESS_BAR: false
+
+### Baseline stream
+### When ENABLE=true, all ophyd objects with a "baseline" label
+### will be added to the baseline stream.
+BASELINE_LABEL:
+    ENABLE: true
+
+### Best Effort Callback Configurations
+### Defaults: all true
+### except no plots in queueserver
+BEC:
+    BASELINE: true
+    HEADING: true
+    PLOTS: false
+    TABLE: true
+
+### Support for known output file formats.
+### Uncomment to use.  If undefined, will not write that type of file.
+### Each callback should apply its configuration from here.
+NEXUS_DATA_FILES:
+    ENABLE: false
+    FILE_EXTENSION: hdf
+
+SPEC_DATA_FILES:
+    ENABLE: true
+    FILE_EXTENSION: dat
+
+### APS Data Management
+### Learn environment variables for Data Management from this file:
+DM_SETUP_FILE: "/home/dm/etc/dm.setup.sh"
+
+# ----------------------------------
+
+OPHYD:
+    ### Control layer for ophyd to communicate with EPICS.
+    ### Default: PyEpics
+    ### Choices: "PyEpics" or "caproto"
+    CONTROL_LAYER: PyEpics
+
+    ### default timeouts (seconds)
+    TIMEOUTS:
+        PV_READ: &TIMEOUT 5
+        PV_WRITE: *TIMEOUT
+        PV_CONNECTION: *TIMEOUT
+
+XMODE_DEBUG_LEVEL: Plain
+
 ```
 
 ## Real-time Data Analysis
@@ -869,58 +955,6 @@ RE(bps.mv(m1, 1.0, m2, 2.0))  # Move multiple motors simultaneously
 # Use meaningful variable names
 current_run = cat[-1]
 motor_pos = m1.position
-```
-
-## Session Documentation
-
-<!--
-TODO:
-After the NX School, let's replace all content in this section with tools that
-harvest all this content from databroker or tiled.  The example here encourages
-duplication of effort and code.
--->
-
-### 1. Keep a Session Log
-
-```python
-# Create session documentation
-session_log = {
-    'date': '2024-01-15',
-    'operator': 'scientist_name',
-    'sample': 'test_sample_001',
-    'objectives': 'Test new alignment procedure',
-    'scans_completed': [],
-    'issues_encountered': [],
-    'next_steps': []
-}
-
-# Update after each major operation
-session_log['scans_completed'].append({
-    'scan_id': cat[-1].metadata['start']['scan_id'],
-    'plan': 'motor_characterization',
-    'purpose': 'Characterize m1 response'
-})
-```
-
-### 2. Export Session Summary
-
-```python
-# Generate session summary
-def session_summary():
-    recent_runs = list(cat)[-10:]  # Last 10 runs
-    
-    print(f"Session Summary ({len(recent_runs)} recent runs):")
-    print("-" * 40)
-    
-    for run in recent_runs:
-        start_time = run.metadata['start']['time']
-        scan_id = run.metadata['start']['scan_id']
-        plan_name = run.metadata['start']['plan_name']
-        
-        print(f"  {scan_id:>3}: {plan_name:<20} at {start_time}")
-
-# Run at end of session
-session_summary()
 ```
 
 ## Deliverables
