@@ -388,6 +388,7 @@ Edit `src/my_beamline/startup.py` to automatically load custom plans:
 from .plans.custom_plans import plan_name
 ```
 Remember, do this at the very end of your startup.py
+
 ### 4. Test Custom Plans
 
 ```python
