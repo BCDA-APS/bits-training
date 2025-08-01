@@ -193,19 +193,7 @@ print(f"IOC CPU: {ioc_cpu.get()}")
 print(f"IOC Memory: {ioc_memory.get()}")
 ```
 
-### 6. Verify Device Labels
-
-```python
-# Check which devices have which labels
-import bluesky.preprocessors as bpp
-
-print("🏷️  Device Labels:")
-print(f"Motors: {list(bpp._devices_by_label['motors'])}")
-print(f"Detectors: {list(bpp._devices_by_label['detectors'])}")
-print(f"Baseline: {list(bpp._devices_by_label['baseline'])}")
-```
-
-### 7. Test Basic Device Operations
+### 6. Test Basic Device Operations
 
 ```python
 # Test motor motion (small relative moves)
