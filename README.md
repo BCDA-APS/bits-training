@@ -25,15 +25,9 @@ This comprehensive tutorial takes beamline scientists from understanding their E
 |------|-------|----------|-------------|
 | [00](tutorial/00_introduction.md) | Introduction & Prerequisites | 10 min | Environment setup |
 | [01](tutorial/01_ioc_exploration.md) | IOC Exploration & Device Discovery | 20 min | Device inventory |
-| [02](tutorial/02_bits_starter_setup.md) | BITS-Starter Template Setup | 15 min | Instrument package |
-| [03](tutorial/03_device_configuration.md) | Device Configuration | 30 min | Working devices |
-| [04](tutorial/04_plan_development.md) | Scan Plan Development | 25 min | Custom plans |
-| [05](tutorial/05_ipython_execution.md) | IPython Interactive Use | 15 min | Live operation |
-| [06](tutorial/06_jupyter_notebooks.md) | Jupyter Notebook Analysis | 20 min | Analysis notebooks |
-| [07](tutorial/07_queueserver_setup.md) | Queue Server Remote Execution | 20 min | Remote capability |
-| [08](tutorial/08_tiled_visualization.md) | Data Visualization with Tiled | 15 min | Data browser |
-| [09](tutorial/09_github_deployment.md) | GitHub Deployment Repository | 15 min | Production repo |
-| [10](tutorial/10_verification_testing.md) | Final Verification & Testing | 10 min | Validated system |
+| [03](tutorial/02_device_configuration.md) | Device Configuration | 30 min | Working devices |
+| [04](tutorial/03_plan_development.md) | Scan Plan Development | 25 min | Custom plans |
+| [05](tutorial/04_ipython_execution.md) | IPython Interactive Use | 15 min | Live operation |
 
 ### Quick Start
 
@@ -55,9 +49,6 @@ python explore_iocs.py
 - **BITS Architecture**: Complete understanding of the BITS framework
 - **Device Integration**: Map EPICS PVs to Bluesky devices
 - **Plan Development**: Create custom scan plans for your science
-- **Data Management**: Handle, visualize, and export your data
-- **Remote Operation**: Set up queue server for remote execution  
-- **Production Deployment**: Create a maintainable, shareable system
 
 ### What You'll Build
 
@@ -82,7 +73,6 @@ By the end of this tutorial, you'll have:
 If you encounter issues:
 1. Check the troubleshooting section in each tutorial step
 2. Run validation scripts in `scripts/`
-3. Compare with working examples in `examples/`
 4. Review the FAQ in the final verification step
 
 ### Container IOCs Provided
