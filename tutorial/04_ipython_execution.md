@@ -545,27 +545,6 @@ procedures.
 
 </details>
 
-If you are translating PyEpics code to Bluesky plans, consult this
-[guide](https://blueskyproject.io/bluesky/from-pyepics-to-bluesky.html?highlight=blocking).
-
-
-### Information Commands
-
-```python
-# Get help on any object
-motor1?              # Basic info
-motor1??             # Source code
-bp.scan?             # Help on scan plan
-
-# Show object attributes
-motor1.<TAB>         # Tab completion shows available attributes
-detector1.<TAB>      # Tab completion for detector attributes
-
-# Command history
-%hist                # Show recent commands
-%hist -n 10          # Show last 10 commands
-%hist -g "scan"      # Search history for "scan"
-```
 
 ### RunEngine Commands
 
