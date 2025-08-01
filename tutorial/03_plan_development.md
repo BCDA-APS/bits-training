@@ -377,18 +377,17 @@ def batch_sample_measurement(sample_positions, measurement_plan,
     print(f"Batch measurements complete: {len(sample_positions)} samples")
 ```
 
-### 3. Load Your Custom Plans
+### 3. Load Your Custom Plans Into Your Instrument
+
+Edit `src/my_beamline/startup.py` to automatically load custom plans:
 
 ```python
-# In IPython session, reload your plans
-import importlib
-import my_beamline.plans.custom_plans as cp
-importlib.reload(cp)
+# Add at the end of startup.py
 
-# Make plans available
-from my_beamline.plans.custom_plans import *
+# Load custom plans
+from .plans.custom_plans import plan_name
 ```
-
+Remember, do this at the very end of your startup.py
 ### 4. Test Custom Plans
 
 ```python
@@ -617,34 +616,6 @@ def my_plan(motor, detector, **kwargs):
     pass
 ```
 
-## Integration with Instrument
-
-### 1. Add Plans to Startup
-
-Edit `src/my_beamline/startup.py` to automatically load custom plans:
-
-```python
-# Add at the end of startup.py
-
-# Load custom plans
-try:
-    from .plans.custom_plans import *
-    logger.info("✅ Custom plans loaded successfully")
-    
-    # Print available custom plans
-    custom_plans = [
-        'motor_characterization',
-        'sample_alignment', 
-        'detector_optimization',
-        'quick_scan',
-        'count_detectors'
-    ]
-    logger.info(f"Available custom plans: {', '.join(custom_plans)}")
-    
-except ImportError as e:
-    logger.warning(f"⚠️  Could not load custom plans: {e}")
-```
-
 
 ## Deliverables
 
@@ -662,8 +633,7 @@ After completing this step, you should have:
 
 ```bash
 # Add the new plans
-git add src/my_beamline/plans/custom_plans.py
-git add scripts/test_plans.py
+git add src/my_instrument/plans/custom_plans.py
 
 # Commit changes
 git commit -m "Add custom scan plans
