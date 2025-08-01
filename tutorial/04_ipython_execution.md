@@ -686,7 +686,7 @@ RE(detector_optimization(m1, scaler1, initial_range=2.0))
 ## Modifying your instrument
 ### Your iconfig file
 
-Go inside your iconfig.yaml file, located in the configs folder of your instrument. Play around with the values and see what happens
+Go inside your iconfig.yaml file, located in the configs folder of your instrument. Play around with the values and see what happens to your ipython session
 ```yaml
 # Configuration for the Bluesky instrument package.
 
