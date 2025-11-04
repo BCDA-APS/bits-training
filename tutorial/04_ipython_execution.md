@@ -42,7 +42,7 @@ IPython provides enhanced interactive Python with:
 
 ```bash
 # Ensure your environment is active
-conda activate BITS_demo
+conda activate bits_env
 
 # Start IPython
 ipython
@@ -52,7 +52,7 @@ ipython
 
 ```python
 # Load everything from your instrument
-from my_beamline.startup import *
+from my_instrument.startup import *
 
 # This imports:
 # - RunEngine (RE)
@@ -202,7 +202,7 @@ command | description
 `MOTOR.move(value)` | ophyd command to `%mov`
 `MOTOR.user_setpoint.put(value)` | ophyd to set motor `.VAL` field but not wait
 `bps.mv(MOTOR, value)` | bluesky plan command to move and wait for completion
-`bps.mv(MOTOR.user_setpoint, value)` | bluesky plan command, same
+`bps.mv(MOTOR.user_setpoint, value)` | bluesky plan command, same as above
 `bps.mvr(MOTOR, value)` | bluesky plan command, relative move
 
 <details>
@@ -244,12 +244,12 @@ area detector | `AD.cam.acquire_time.put(COUNT_TIME_S)`
 <summary>Examples:</summary>
 
 <pre>
-In [20]: <b>scaler.preset_time.get()</b>
+In [20]: <b>scaler1.preset_time.get()</b>
 Out[20]: 1.0
 
-In [21]:<b>%mov scaler.preset_time 2.5</b>
+In [21]:<b>%mov scaler1.preset_time 2.5</b>
 
-In [22]: <b>scaler.preset_time.get()</b>
+In [22]: <b>scaler1.preset_time.get()</b>
 Out[22]: 2.5
 
 In [23]: <b>%ct</b>
@@ -260,16 +260,16 @@ ROI1                           0.0
 ROI2                           0.0
 scaler_time                    2.6
 
-In [24]: <b>scaler.trigger().wait()</b>
+In [24]: <b>scaler1.trigger().wait()</b>
 
-In [25]: <b>scaler.read()</b>
+In [25]: <b>scaler1.read()</b>
 Out[25]:
 OrderedDict([('I0Mon', {'value': 12.0, 'timestamp': 1613880362.609086}),
              ('ROI1', {'value': 0.0, 'timestamp': 1613880362.609086}),
              ('ROI2', {'value': 0.0, 'timestamp': 1613880362.609086}),
              ('scaler_time', {'value': 2.6, 'timestamp': 1613880338.961804})])
 
-In [26]: <b>scaler.trigger().wait(); scaler.read()</b>
+In [26]: <b>scaler1.trigger().wait(); scaler1.read()</b>
 Out[26]:
 OrderedDict([('I0Mon', {'value': 11.0, 'timestamp': 1613880389.315847}),
              ('ROI1', {'value': 0.0, 'timestamp': 1613880389.315847}),

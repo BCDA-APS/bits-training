@@ -137,7 +137,7 @@ ophyd.EpicsSignal:
 
 ```bash
 # Verify YAML syntax
-cd src/
+cd src/my_instrument/configs
 python -c "
 import yaml
 with open('devices.yml') as f:
@@ -186,11 +186,6 @@ print(f"scaler1 channels: {scaler1.channels}")
 # Test area detector
 print(f"simdet connected: {simdet.connected}")
 print(f"simdet image size: {simdet.cam.array_size.get()}")
-
-# Test baseline devices
-print("\n📊 Testing Support Devices:")
-print(f"IOC CPU: {ioc_cpu.get()}")
-print(f"IOC Memory: {ioc_memory.get()}")
 ```
 
 ### 6. Test Basic Device Operations
@@ -361,6 +356,8 @@ print(f"EPICS_CA_AUTO_ADDR_LIST: {os.environ.get('EPICS_CA_AUTO_ADDR_LIST', 'Not
 ```
 
 **Solutions:**
+
+In your terminal shell:
 ```bash
 # Set EPICS environment if needed
 export EPICS_CA_AUTO_ADDR_LIST=YES
@@ -373,6 +370,7 @@ podman ps | grep -E "(adsim_ioc|gp_ioc)"
 
 ```bash
 # Validate YAML syntax
+cd /src/my_instrument/
 python -c "
 import yaml
 try:
@@ -400,7 +398,7 @@ OPHYD:
 
 ### 1. Device Naming
 - Use descriptive names: `sample_x` instead of `m4`
-- Group related devices: `sample_stage.x`, `sample_stage.y`
+- Group related devices: `sample_stage_x`, `sample_stage.y`
 - Avoid special characters in names
 
 ### 2. Labeling Strategy
@@ -412,7 +410,7 @@ OPHYD:
 ### 3. Configuration Organization
 - Start with essential devices (2-3 motors, 1 detector)
 - Add devices incrementally and test each addition
-- Seperate devices into yaml files as you see fit to simplify debugging
+- Separate devices into yaml files as you see fit to simplify debugging
 - Use comments to document PV meanings
 
 ### 4. Testing Approach

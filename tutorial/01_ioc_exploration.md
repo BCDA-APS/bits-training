@@ -31,7 +31,7 @@ podman pull ghcr.io/bcda-aps/bits/epics-podman:latest
 ### 2. Start Both IOCs
 ```bash
 # Navigate to your instrument repository
-cd ~/ws/bits-training
+cd ~/ws/my_beamline_bits
 
 # Start the demo IOCs (using BITS demo scripts)
 # These will be provided as part of the tutorial setup
@@ -340,7 +340,7 @@ export EPICS_CA_AUTO_ADDR_LIST=YES
 ### Missing Commands
 ```bash
 # If caget/caput not available
-conda activate BITS_demo
+conda activate bits_env
 pip install pyepics
 
 # Or use the exploration script which doesn't require EPICS tools
