@@ -30,21 +30,6 @@ device_callable: # Device class or function
     # additional parameters...
 ```
 
-### Device Callables
-
-| Device Callable | Use Case | EPICS PV kwarg | kwarg meaning |
-|-----------------|----------|----------------| ------------- |
-| `ophyd.EpicsMotor` | Motors, positioners | `prefix` | Base PV (e.g., `gp:m1`) |
-| `ophyd.scaler.ScalerCH` | Multi-channel scalers | `prefix` | Base PV (e.g., `gp:scaler1`) |
-| `apstools.devices.ad_creator` | Area detectors | `prefix` | Base PV (e.g., `adsim:`) |
-| `ophyd.EpicsSignalRO` | Read-only values | `read_pv` | Full PV name |
-| `ophyd.EpicsSignal` | Read-write values | `write_pv` | Full PV name (add `read_pv` kwarg if different) |
-
-Notes:
-
-- When in doubt, check the source code for the `device_callable`.
-- For some reason, the `prefix` kwarg works just fine with both `EpicsSignal` & `EpicsSignalRO`.
-
 ### Device Labels
 
 Labels organize devices for different uses.  These are the labels with
@@ -106,7 +91,7 @@ ophyd.scaler.ScalerCH:
   labels: ["detectors"]
 - name: scaler2
   prefix: "gp:scaler2"
-  labels: ["detectors", "baseline"]
+  labels: ["detectors"]
 
 # Area detector from adsim IOC
 apstools.devices.ad_creator:
@@ -117,19 +102,16 @@ apstools.devices.ad_creator:
 # Support and monitoring devices
 ophyd.EpicsSignalRO:
 - name: ioc_cpu
-  prefix: "gp:IOC_CPU_LOAD"
-  labels: ["baseline", "monitoring"]
-- name: ioc_memory
-  prefix: "gp:IOC_MEM_USED"
-  labels: ["baseline", "monitoring"]
+  read_pv: "gp:IOC_CPU_LOAD"
+  labels: ["monitoring"]
 
 # User calculations
 ophyd.EpicsSignal:
 - name: calc1
-  prefix: "gp:userCalc1.VAL"
+  read_pv: "gp:userCalc1.VAL"
   labels: ["calculations"]
 - name: calc2
-  prefix: "gp:userCalc2.VAL"
+  read_pv: "gp:userCalc2.VAL"
   labels: ["calculations"]
 ```
 
@@ -434,7 +416,7 @@ Before proceeding to the next step:
 
 ```bash
 # Add the new configuration
-git add configs/devices.yml scripts/test_devices.py
+git add configs/devices.yml
 
 # Commit changes
 git commit -m "Configure real IOC devices

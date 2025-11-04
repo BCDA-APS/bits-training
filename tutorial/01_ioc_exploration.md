@@ -29,6 +29,9 @@ Let's start with the tutorial IOCs that simulate a real beamline:
 podman pull ghcr.io/bcda-aps/bits/epics-podman:latest
 ```
 ### 2. Start Both IOCs
+
+Download the scripts from the [bits-training repo](https://github.com/BCDA-APS/bits-training/tree/main/scripts) and copy them into your scripts directory (`~/ws/my_beamline_bits/scripts`):
+
 ```bash
 # Navigate to your instrument repository
 cd ~/ws/my_beamline_bits
