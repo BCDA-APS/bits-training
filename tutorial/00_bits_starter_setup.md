@@ -37,11 +37,11 @@ BITS-Starter is a GitHub template repository that provides:
 2. Click the green **"Use this template"** button
 3. Select **"Create a new repository"**
 4. Set repository settings:
+   - **Include all branches**: Leave unchecked
    - **Repository name**: `my_beamline_bits` (replace with your actual beamline name)
    - **Description**: "BITS instrument for [your beamline] beamline"
    - **Visibility**: Public (recommended for learning)
-   - **Include all branches**: Leave unchecked
-5. Click **"Create repository from template"**
+5. Click **"Create repository"**
 
 **Option B: Using GitHub CLI (Alternative)**
 
@@ -59,15 +59,12 @@ gh repo create my_beamline_bits --template BCDA-APS/BITS-Starter --public
 mkdir -p ~/ws
 cd ~/ws
 
-# Clone the training repository
-git clone https://github.com/BCDA-APS/bits-training.git
-
 # Clone your repository (replace YOUR_USERNAME with your GitHub username)
 git clone https://github.com/YOUR_USERNAME/my_beamline_bits.git
 cd my_beamline_bits
 
 # Verify the structure
-ls -la
+tree .
 ```
 
 **Expected structure:**
@@ -78,8 +75,7 @@ my_beamline_bits/
 ├── pyproject.toml
 ├── src/
 │   └── (template instrument files)
-├── scripts/
-└── tests/
+└── scripts/
 ```
 
 ### 3. Set Up Python Environment
@@ -107,15 +103,6 @@ pip install -e .
 # This allows you to edit the code and see changes immediately
 ```
 
-### 4. Install Your Instrument Package
-
-```bash
-# Install your instrument in development mode
-pip install -e .
-
-# This allows you to edit the code and see changes immediately
-```
-
 ### 5. Verify Installation
 
 ```bash
@@ -124,8 +111,8 @@ ipython
 ```
 Inside the ipython environment run the below
 ```python
-from my_instrument import * # Import your instrument
-RE(sim_rel_scan()) # Run one of the pre-configured plans
+from my_instrument.startup import * # Import your instrument
+RE(sim_rel_scan_plan()) # Run one of the pre-configured plans
 ```
 
 ## Understanding Your Repository Structure

@@ -62,7 +62,7 @@ Before creating custom plans, let's review the built-in plans:
 
 ```python
 # Start IPython session
-from my_beamline.startup import *
+from my_instrument.startup import *
 import bluesky.plans as bp
 import bluesky.plan_stubs as bps
 
@@ -92,16 +92,16 @@ RE(bp.grid_scan([scaler1],
 
 ```bash
 # Create plans file for your custom plans
-touch src/my_beamline/plans/custom_plans.py
+touch src/my_instrument/plans/custom_plans.py
 ```
 
 ### 2. Motor Characterization Plan
 
-Edit `src/my_beamline/plans/custom_plans.py`:
+Edit `src/my_instrument/plans/custom_plans.py`:
 
 ```python
 """
-Custom scan plans for my_beamline instrument
+Custom scan plans for my_instrument
 """
 import bluesky.plans as bp
 import bluesky.plan_stubs as bps
@@ -390,6 +390,8 @@ from .plans.custom_plans import plan_name
 Remember, do this at the very end of your startup.py
 
 ### 4. Test Custom Plans
+
+After editing startup.py, restart your IPython session and run `from my_instrument.startup import *` to load the new plans.
 
 ```python
 # Test motor characterization

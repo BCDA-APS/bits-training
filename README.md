@@ -23,11 +23,11 @@ This comprehensive tutorial takes beamline scientists from understanding their E
 
 | Step | Topic | Duration | Deliverable |
 |------|-------|----------|-------------|
-| [00](tutorial/00_introduction.md) | Introduction & Prerequisites | 10 min | Environment setup |
+| [00](tutorial/00_bits_starter_setup.md) | Introduction & Prerequisites | 10 min | Environment setup |
 | [01](tutorial/01_ioc_exploration.md) | IOC Exploration & Device Discovery | 20 min | Device inventory |
-| [03](tutorial/02_device_configuration.md) | Device Configuration | 30 min | Working devices |
-| [04](tutorial/03_plan_development.md) | Scan Plan Development | 25 min | Custom plans |
-| [05](tutorial/04_ipython_execution.md) | IPython Interactive Use | 15 min | Live operation |
+| [02](tutorial/02_device_configuration.md) | Device Configuration | 30 min | Working devices |
+| [03](tutorial/03_plan_development.md) | Scan Plan Development | 25 min | Custom plans |
+| [04](tutorial/04_ipython_execution.md) | IPython Interactive Use | 15 min | Live operation |
 
 ### Quick Start
 
@@ -48,14 +48,14 @@ python explore_iocs.py
 - **IOC Understanding**: How to discover and categorize devices in your IOCs
 - **BITS Architecture**: Complete understanding of the BITS framework
 - **Device Integration**: Map EPICS PVs to Bluesky devices
-- **Plan Development**: Create custom scan plans for your science
+- **Plan Development**: Create custom scan plans for your experiment
 
 ### What You'll Build
 
 By the end of this tutorial, you'll have:
 
 1. **Working Instrument Package**: Complete BITS deployment controlling your IOCs
-2. **GitHub Repository**: Professional deployment repository with documentation
+2. **GitHub Repository**: Professionally deployed repository with documentation
 3. **Custom Scan Plans**: Tailored to your experimental needs
 4. **Data Analysis Tools**: Jupyter notebooks and visualization setup
 5. **Remote Capabilities**: Queue server for unattended operation
@@ -88,11 +88,11 @@ These provide a realistic learning environment without requiring physical hardwa
 
 After completing this tutorial:
 - Adapt the examples to your actual hardware
-- Customize scan plans for your science requirements  
+- Customize scan plans for your scientific requirements  
 - Deploy to your beamline environment
 - Share with your team through GitHub
 - Extend with additional devices and capabilities
 
 ---
 
-**Ready to start?** → Begin with [Tutorial Introduction](tutorial/00_introduction.md)
+**Ready to start?** → Begin with [Tutorial Introduction](tutorial/00_bits_starter_setup.md)
